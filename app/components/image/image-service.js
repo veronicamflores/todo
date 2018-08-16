@@ -1,3 +1,4 @@
+import Image from "../../models/Image.js";
 
 const url = '//bcw-getter.herokuapp.com/?url=';
 const url2 = 'http://www.splashbase.co/api/v1/images/random'
@@ -10,12 +11,12 @@ const imgApi = axios.create({
 });
 
 export default class ImageService {
-	getImage(callWhenDone) {
+	getImage(draw) {
 		// ^^^^^^^ How do you call this function?
-		console.log("Looking for a good pic")
-		imgApi().then(res => {
-			console.log('Image Data:', res.data)
-			callWhenDone(res.data)
+		imgApi.get()
+		.then(res => {
+				let image = new Image(res.data)
+			draw(image)
 		})
 	}
 }
