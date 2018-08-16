@@ -5,6 +5,7 @@ import ImageService from "./image-service.js";
 let imageService = new ImageService
 
 function drawImage(images){
+    document.getElementById('body').style.backgroundImage = `url('${images.url}')`
 }
 
 export default class ImageController {
