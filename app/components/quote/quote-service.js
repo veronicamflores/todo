@@ -1,3 +1,5 @@
+import Quote from "../../models/Quote.js";
+
 let url = '//bcw-getter.herokuapp.com/?url=';
 let url2 = 'http://quotesondesign.com/api/3.0/api-3.0.json';
 let apiUrl = url + encodeURIComponent(url2);
@@ -11,10 +13,12 @@ const quoteApi = axios.create({
 
 
 export default class QuoteService {
-	getQuote(callWhenDone) {
+	getQuote(draw) {
 		console.log('looking for some good quotes')
-		quoteApi().then((res) => {
-			callWhenDone(res.data)
+		quoteApi.get()
+		.then((res) => {
+			let quote = new Quote(res.data)
+			draw(quote)
 		})
 	}
 }

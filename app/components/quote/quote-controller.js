@@ -1,16 +1,22 @@
 import QuoteService from "./quote-service.js";
 
-let qs = new QuoteService
+let quoteService = new QuoteService
 
+function drawQuote(quotes){
+	document.getElementById('quote').innerHTML = `
+	<div>
+	<h3>${quotes.quote}</h3>
+	<p>${quotes.author}</p>
+	</div>
+	`
+}
 
 export default class QuoteController {
 	constructor() {
-		this.getQuote()
+		this.getQuote(drawQuote)
 	}
 
 	getQuote() {
-		qs.getQuote(function (quote) {
-			console.log('What is the quote', quote)
-		})
+		quoteService.getQuote(drawQuote)
 	}
 }
