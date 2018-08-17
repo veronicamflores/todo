@@ -13,14 +13,24 @@ function getTodos() {
 function draw(todos) {
 	//WHAT IS MY PURPOSE?
 	//BUILD YOUR TODO TEMPLATE HERE
-	var template = ''
+	let template = ''
+	for (let i = 0; i < todos.length; i++) {
+		const todo = todos[i];
+		template += `
+		<div class="form-check">
+  			<input class="form-check-input" type="checkbox" >
+  			<label class="form-check-label">${todo.description}</label>
+		</div>
+		`
+	}
+	document.getElementById('todo').innerHTML = template
 	//DONT FORGET TO LOOP
 }
 
 
 export default class TodoController {
 	constructor() {
-		// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
+		todoService.getTodos(draw)// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
 	}
 	// You will need four methods
 	// getTodos should request your api/todos and give an array of todos to your callback fn
@@ -31,7 +41,7 @@ export default class TodoController {
 
 
 	addTodoFromForm(e) {
-		e.preventDefault() // <-- hey this time its a freebie don't forget this
+		e.preventDefault()
 		// TAKE THE INFORMATION FORM THE FORM
 		var form = e.target
 		var todo = {
@@ -53,7 +63,7 @@ export default class TodoController {
 
 	removeTodo(todoId) {
 		// ask the service to run the remove todo with this id
-
+		todoService.removeTodo(id, draw)
 		// ^^^^ THIS LINE OF CODE PROBABLY LOOKS VERY SIMILAR TO THE toggleTodoStatus
 	}
 
