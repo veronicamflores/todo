@@ -5,10 +5,6 @@ import TodoService from "./todo-service.js";
 var todoService = new TodoService
 
 // Use this getTodos function as your callback for all other edits
-function getTodos() {
-	//FYI DONT EDIT ME :)
-	todoService.getTodos(draw)
-}
 
 function draw(todos) {
 	//WHAT IS MY PURPOSE?
@@ -17,8 +13,10 @@ function draw(todos) {
 	for (let i = 0; i < todos.length; i++) {
 		const todo = todos[i];
 		template += `
+		<div id="todo" class="form-check col-xs-12 col-md-12">
   			<input class="form-check-input" type="checkbox" >
-  			<label class="form-check-label">${todo.description}</label>
+			<label class="form-check-label">${todo.description} <i class="fas fa-times" onclick="app.controllers.todoController.removeTodo('${todo._id}')"></i></label>
+		</div>
 		`
 	}
 	document.getElementById('todo').innerHTML = template
@@ -28,7 +26,13 @@ function draw(todos) {
 
 export default class TodoController {
 	constructor() {
-		getTodos()// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
+
+		this.getTodos()
+		// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
+	}
+	getTodos() {
+	//FYI DONT EDIT ME :)
+	todoService.getTodos(draw)
 	}
 	// You will need four methods
 	// getTodos should request your api/todos and give an array of todos to your callback fn
@@ -41,15 +45,15 @@ export default class TodoController {
 		e.preventDefault() // <-- hey this time its a freebie don't forget this
 		// TAKE THE INFORMATION FORM THE FORM
 		let form = e.target
-		var todo = {
-			description:{type: form.description, required: true}
+		let todo = {
+			description: form.description.value,
 			// DONT FORGET TO BUILD YOUR TODO OBJECT
 		}
 
 		//PASSES THE NEW TODO TO YOUR SERVICE
 		//DON'T FORGET TO REDRAW THE SCREEN WITH THE NEW TODO
 		//YOU SHOULDN'T NEED TO CHANGE THIS
-		todoService.addTodo(todo, getTodos)
+		todoService.addTodo(todo, draw)
 		//^^^^^^^ EXAMPLE OF HOW TO GET YOUR TOODOS AFTER AN EDIT
 		form.reset()
 	}

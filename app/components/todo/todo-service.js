@@ -14,22 +14,22 @@ let todoList = []
 
 export default class TodoService {
 
-	getTodos(draw) {
+	getTodos(callback) {
 		console.log("Getting the Todo List")
 		todoApi.get('')
 			.then((res) => { // <-- WHY IS THIS IMPORTANT????
 				let todos = res.data.data.map(rawT => new Todo(rawT))
-				draw(todos)
+				callback(todos)
 			})
 			.catch(logError)
 	}
 
-	addTodo(todo, draw) {
+	addTodo(todo, callback) {
+		console.log(todo)
 		// WHAT IS THIS FOR???
 		todoApi.post('', todo)
-			.then(function (res) { // <-- WHAT DO YOU DO AFTER CREATING A NEW TODO?
-				this.getTodos(draw)
-				console.log(res)
+			.then(res=> { // <-- WHAT DO YOU DO AFTER CREATING A NEW TODO?
+				this.getTodos(callback)
 			})
 			.catch(logError)
 	}
@@ -38,7 +38,7 @@ export default class TodoService {
 		// MAKE SURE WE THINK THIS ONE THROUGH
 		//STEP 1: Find the todo by its index **HINT** todoList
 
-		var todo = {} ///MODIFY THIS LINE
+		let todo = {} ///MODIFY THIS LINE
 
 		//STEP 2: Change the completed flag to the opposite of what is is **HINT** todo.completed = !todo.completed
 		todoApi.put(todoId, todo)
@@ -48,11 +48,11 @@ export default class TodoService {
 			.catch(logError)
 	}
 
-	removeTodo(todoId, draw) {
+	removeTodo(todoId, callback) {
 		// Umm this one is on you to write.... The method is a DELETE
-		todoApi.delete(id)
+		todoApi.delete(todoId)
 		.then(res =>{
-			this.getTodos(draw)
+			this.getTodos(callback)
 		})
 	}
 
