@@ -17,10 +17,8 @@ function draw(todos) {
 	for (let i = 0; i < todos.length; i++) {
 		const todo = todos[i];
 		template += `
-		<div class="form-check">
   			<input class="form-check-input" type="checkbox" >
   			<label class="form-check-label">${todo.description}</label>
-		</div>
 		`
 	}
 	document.getElementById('todo').innerHTML = template
@@ -30,7 +28,7 @@ function draw(todos) {
 
 export default class TodoController {
 	constructor() {
-		todoService.getTodos(draw)// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
+		getTodos()// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
 	}
 	// You will need four methods
 	// getTodos should request your api/todos and give an array of todos to your callback fn
@@ -39,12 +37,12 @@ export default class TodoController {
 	// removeTodo takes in a todoId and sends a delete request to the server
 	// **** HINT: Everytime you make a change to any todo don't forget to get the todo list again
 
-
 	addTodoFromForm(e) {
-		e.preventDefault()
+		e.preventDefault() // <-- hey this time its a freebie don't forget this
 		// TAKE THE INFORMATION FORM THE FORM
-		var form = e.target
+		let form = e.target
 		var todo = {
+			description:{type: form.description, required: true}
 			// DONT FORGET TO BUILD YOUR TODO OBJECT
 		}
 
@@ -53,6 +51,7 @@ export default class TodoController {
 		//YOU SHOULDN'T NEED TO CHANGE THIS
 		todoService.addTodo(todo, getTodos)
 		//^^^^^^^ EXAMPLE OF HOW TO GET YOUR TOODOS AFTER AN EDIT
+		form.reset()
 	}
 
 	toggleTodoStatus(todoId) {
@@ -63,7 +62,7 @@ export default class TodoController {
 
 	removeTodo(todoId) {
 		// ask the service to run the remove todo with this id
-		todoService.removeTodo(id, draw)
+		todoService.removeTodo(todoId, draw)
 		// ^^^^ THIS LINE OF CODE PROBABLY LOOKS VERY SIMILAR TO THE toggleTodoStatus
 	}
 
