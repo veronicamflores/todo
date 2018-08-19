@@ -8,7 +8,7 @@ var todoService = new TodoService
 let todo = document.getElementById('todo-hidden')
 let weather = document.getElementById('weather-hidden')
 let quote = document.getElementById('quote-hidden')
-
+let check = document.getElementsByTagName('input')
 function draw(todos) {
 	//WHAT IS MY PURPOSE?
 	//BUILD YOUR TODO TEMPLATE HERE
@@ -21,6 +21,10 @@ function draw(todos) {
 		<label class="form-check-label">${todo.description} <i class="fas fa-times" onclick="app.controllers.todoController.removeTodo('${todo._id}')"></i></label>
 		</div>
 		`
+		if(check.checked = true){
+			toggleTodoStatus(todo._id)
+			check.disabled = true
+		}
 	}
 	document.getElementById('todo').innerHTML = template
 	//DONT FORGET TO LOOP
@@ -33,11 +37,11 @@ export default class TodoController {
 		this.getTodos()
 		// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
 	}
-	open(id) {
-		id.hidden = false
+	open(word) {
+		word.hidden = false
 	}
- 	close(id) {
-		id.hidden = true
+ 	close(word) {
+		word.hidden = true
 	}
 getTodos() {
 	//FYI DONT EDIT ME :)
@@ -68,8 +72,9 @@ addTodoFromForm(e) {
 }
 
 toggleTodoStatus(todoId) {
+	
 	// asks the service to edit the todo status
-	todoService.toggleTodoStatus(todoId, getTodos)
+	todoService.toggleTodoStatus(todoId, draw)
 	// YEP THATS IT FOR ME
 }
 
