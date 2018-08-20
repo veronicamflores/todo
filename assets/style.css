@@ -10,5 +10,12 @@
 }
 
 .icons-own{
-    font-size: 3rem;
+    font-size: 3rem; 
+}
+.bg{
+    height: 100%;
+}
+.bg-bottom{
+    display: flex;
+    align-items: flex-end;
 }

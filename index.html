@@ -14,17 +14,14 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div id="todo-hidden" class="col-xs-12 col-md-3 bg-gray" hidden>
+            <div class="col-xs-12 col-md-3 bg-gray">
                 <div class="row">
                     <div class="col-12">
-                        <i onclick="app.controllers.todoController.close(todo)" class="fas fa-times-circle"></i>
-                    </div>
-                    <div class="col-12">
-                        <h1>TO DO</h1>
+                        <h1 id="todo-title"></h1>
                         <form onsubmit="app.controllers.todoController.addTodoFromForm(event)">
                             <div class="form-group">
                                 <input type="text" name="description" placeholder="Feed Imaginary Cat" required/>
-                                <button class="btn" type="sumbit">+</button>
+                                <button class="btn" type="sumbit"><i class="fas fa-plus"></i></button>
                             </div>
                             <div id="todo" class="form-group">
 
@@ -33,38 +30,16 @@
                     </div>
                 </div>
             </div>
-            <div id="weather-hidden" class="col-xs-12 col-md-3 bg-gray" hidden>
-                <div class="row">
-                    <div class="col-12">
-                        <i onclick="app.controllers.todoController.close(weather)" class="fas fa-times-circle"></i>
+            <div class="col-xs-12 col-md-9 bg">
+                <div class="row ">
+                    <div class="col-xs-12 col-md-12 d-flex justify-content-end">
+                        <div id="weather" class=""></div>
                     </div>
-                    <div class="col-12">
-                        <div id="weather"></div>
-                    </div>
-                </div>
-            </div>
-            <div id="quote-hidden" class="col-xs-12 col-md-3 bg-gray" hidden>
-                <div class="row">
-                    <div class="col-12">
-                        <i onclick="app.controllers.todoController.close(quote)" class="fas fa-times-circle"></i>
-                    </div>
-                    <div class="col-12">
-                        <div id="quote"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-9">
-                <div class="row">
-                    <div class="col-12">
-                        <h1>CLOCK PLACEMENT</h1>
-                    </div>
-                    <div class="col-12">
+                    <div class="col-12 d-flex justify-content-center align-items-center">
                         <h1>Hello Veronica</h1>
                     </div>
-                    <div class="col-12 d-flex justify-content-center aling-items-center">
-                        <i onclick="app.controllers.todoController.open(todo)" class="fas fa-clipboard-list icons-own"></i>
-                        <i onclick="app.controllers.todoController.open(weather)" class="fas fa-sun icons-own"></i>
-                        <i onclick="app.controllers.todoController.open(quote)" class="fas fa-quote-right icons-own"></i>
+                    <div class="col-xs-12 col-md-12 bg-bottom">
+                        <div id="quote"></div>
                     </div>
                 </div>
             </div>

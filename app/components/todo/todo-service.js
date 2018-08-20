@@ -37,7 +37,6 @@ export default class TodoService {
 	toggleTodoStatus(todoId, callback) {
 
 		let todo = {
-			completed = 
 		}
 
 		//STEP 2: Change the completed flag to the opposite of what is is **HINT** todo.completed = !todo.completed
@@ -53,7 +52,7 @@ export default class TodoService {
 		// Umm this one is on you to write.... The method is a DELETE
 		todoApi.delete(todoId)
 		.then(res =>{
-			this.get0Todos(callback)
+			this.getTodos(callback)
 		})                                                                                       
 	}
 

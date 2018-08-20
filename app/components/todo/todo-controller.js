@@ -21,13 +21,16 @@ function draw(todos) {
 		<label class="form-check-label">${todo.description} <i class="fas fa-times" onclick="app.controllers.todoController.removeTodo('${todo._id}')"></i></label>
 		</div>
 		`
-		if(check.checked = true){
-			toggleTodoStatus(todo._id)
-			check.disabled = true
-		}
 	}
 	document.getElementById('todo').innerHTML = template
 	//DONT FORGET TO LOOP
+}
+
+function drawtodo(todos){
+	template = `
+	TODO: ${todos.length}
+	`
+
 }
 
 
@@ -37,12 +40,7 @@ export default class TodoController {
 		this.getTodos()
 		// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
 	}
-	open(word) {
-		word.hidden = false
-	}
- 	close(word) {
-		word.hidden = true
-	}
+
 getTodos() {
 	//FYI DONT EDIT ME :)
 	todoService.getTodos(draw)
