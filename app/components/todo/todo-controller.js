@@ -5,9 +5,6 @@ import TodoService from "./todo-service.js";
 var todoService = new TodoService
 
 // Use this getTodos function as your callback for all other edits
-let todo = document.getElementById('todo-hidden')
-let weather = document.getElementById('weather-hidden')
-let quote = document.getElementById('quote-hidden')
 let check = document.getElementsByTagName('input')
 function draw(todos) {
 	//WHAT IS MY PURPOSE?
@@ -17,7 +14,7 @@ function draw(todos) {
 		const todo = todos[i];
 		template += `
 		<div id="todo" class="form-check col-xs-12 col-md-12">
-		<input class="form-check-input" type="checkbox" unchecked>
+		<input onclick="app.controllers.todoController.check()" class="form-check-input" type="checkbox" unchecked>
 		<label class="form-check-label">${todo.description} <i class="fas fa-times" onclick="app.controllers.todoController.removeTodo('${todo._id}')"></i></label>
 		</div>
 		`
@@ -29,12 +26,22 @@ function draw(todos) {
 
 
 
+
 export default class TodoController {
 	constructor() {
 
 		this.getTodos()
 		// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
 	}
+	// check(){
+	// 	if(document.getElementsByTagName('input').checked){
+	// 	  document.getElementsByTagName('input').classList.add("strikethrough")
+	// 	  document.getElementsByTagName('input').disabled = true
+	// 	}else if(!document.getElementsByTagName('input').checked){
+	// 		document.getElementsByTagName('input').classList.remove("strikethrough")
+	// 		document.getElementsByTagName('input').disabled = false
+	// 	}
+	//   }
 
 getTodos() {
 	//FYI DONT EDIT ME :)

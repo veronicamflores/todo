@@ -24,3 +24,7 @@
 .large-tx{
     font-size:4rem;
 }
+.strikethrough{
+    text-decoration: line-through;
+}
+
