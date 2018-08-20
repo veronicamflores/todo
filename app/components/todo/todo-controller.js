@@ -26,12 +26,7 @@ function draw(todos) {
 	//DONT FORGET TO LOOP
 }
 
-function drawtodo(todos){
-	template = `
-	TODO: ${todos.length}
-	`
 
-}
 
 
 export default class TodoController {
